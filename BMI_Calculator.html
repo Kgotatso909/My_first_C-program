@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title></title>
+</head>
+<style type="text/css">
+body {
+   background-color:#008088;
+   color:#ffffff;
+   padding:0.31rem;
+   font-family:Courier new,monospace;
+}
+h1 {
+   text-align:center;
+}
+.container {
+   text-align:center;
+   height: auto;
+   box-shadow:0.13rem 0.13rem 0.5rem 0.12rem #000000;
+   padding:0.55rem;
+}
+input {
+   width:7.5rem;
+}
+#submit {
+   margin-top:5px;
+   border: 1px solid black;
+   width: 3.5rem;
+   
+}
+
+footer {
+ text-align:center;
+ 
+}
+#results {
+   transform:translate(-380px);
+   transition: 1s;
+
+}
+</style>
+<body>
+   <h1>BMI Calculator</h1>
+   <div class="container">
+        <form>
+        <label for="weight">Weight: </label>
+        <input type="number" id="weight" maxlength="999" placeholder="weight in kilogram" required="required" /> 
+        <br /> <br />
+        <label for="height">Height: </label>
+        <input type="number" id="height" maxlength="999" placeholder="height in meters" required="required" /> 
+        <br />
+        <input type="button" value="send" id="submit" />
+      
+        </form>
+        <br />
+       <div class="container" id="results">
+       <p>BMI report</p>
+       <p> Weight: <span id="w-value">0</span></p>
+       <p> height: <span id="h-value">0</span></p>
+       <p> BMI: <span id="bmi-value">0</span></p>
+       <p> Status: <span id="s-value">None</span></p>
+       </div>
+   </div>
+   <footer>
+      <p>Copyright &copy; 2022-2023, Prokit. All rights reserved. </p>
+   </footer>
+<script type="text/javascript">
+window.onload = function()
+{
+   let w = document.getElementById("weight")
+   let h = document.getElementById("height")
+   let sub = document.getElementById("submit")
+   
+   let ht = document.getElementById("h-value")
+   let wt = document.getElementById("w-value")
+   let bmi = document.getElementById("bmi-value")
+   let status = document.getElementById("s-value")
+   
+   
+   sub.onclick = function ()
+   {
+      let calBMI = w.value/Math.pow(h.value,2);
+      calBMI = calBMI.toFixed(2);
+      ht.innerText= h.value;
+      wt.innerText = w.value;
+      bmi.innerText = calBMI;
+      
+      if (calBMI >= 35)
+      {
+         status.innerText = "Severely obese"
+      } else if (calBMI >= 30 && calBMI < 35)
+      {
+         status.innerText = "Obese"
+      } 
+      else if (calBMI >= 25 && calBMI < 30)
+      {
+         status.innerText = "Overweight"
+      } else if (calBMI >= 18.5 && calBMI < 25)
+      {
+        status.innerText = "Healthy"
+      } else {
+        status.innerText = "Underweight"
+      }
+     let x = document.getElementById("results")
+     x.style.transform = "translate(1%)" 
+      
+   }
+   
+}
+</script>
+</body>
+</html>
